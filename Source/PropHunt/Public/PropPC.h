@@ -5,6 +5,8 @@
 #include "GameFramework/PlayerController.h"
 #include "PropPC.generated.h"
 
+class AProp;
+
 /**
  * 
  */
@@ -14,6 +16,9 @@ class PROPHUNT_API APropPC : public APlayerController
 	GENERATED_BODY()
 	
 	
-	
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "Prop Swapping")
+	void BecomeProp();
 	
 };
