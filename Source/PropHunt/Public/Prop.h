@@ -20,6 +20,7 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
-	
+	UPROPERTY(EditAnywhere, Category = "Prop's Model")
+	UStaticMesh * ModelToSet;
 	
 };
