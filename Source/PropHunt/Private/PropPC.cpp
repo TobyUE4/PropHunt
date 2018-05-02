@@ -59,7 +59,7 @@ void APropPC::BecomeProp() {
 		}
 	
 	}
-
+	/*
 	DrawDebugLine(
 
 		GetWorld(),
@@ -72,6 +72,6 @@ void APropPC::BecomeProp() {
 		1.f
 
 	);
-
+	*/
 }
 
