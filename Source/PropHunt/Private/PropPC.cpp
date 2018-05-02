@@ -2,6 +2,8 @@
 
 #include "PropHunt.h"
 #include "Prop.h"
+#include "PropAttributesComponent.h"
+#include "PropPlayerAttributes.h"
 #include "PropPC.h"
 
 
@@ -32,13 +34,19 @@ void APropPC::BecomeProp() {
 		
 			TArray<UStaticMeshComponent *> PropStaticMeshComponents;
 			TArray<UStaticMeshComponent *> MyStaticMeshComponents;
+			
+			TArray<UPropAttributesComponent *> PropAttributes;
+			TArray<UPropPlayerAttributes *> MyAttributes;
+			
 			FoundProp->GetComponents(PropStaticMeshComponents);
+			FoundProp->GetComponents(PropAttributes);
 
 			if (PropStaticMeshComponents[0]) {
 			
 				UStaticMesh * MeshToInherit = PropStaticMeshComponents[0]->StaticMesh;	
 
 				GetPawn()->GetComponents(MyStaticMeshComponents);
+				GetPawn()->GetComponents(MyAttributes);
 
 				if (MyStaticMeshComponents[0]) {
 				
@@ -55,6 +63,24 @@ void APropPC::BecomeProp() {
 			}
 
 			else { UE_LOG(LogTemp, Warning, TEXT("A prop is missing a static mesh component!")); }
+
+			if (PropAttributes.Num() > 0) {
+
+				if (PropAttributes[0]) {
+
+					if (MyAttributes.Num() > 0) {
+
+						if (MyAttributes[0]) {
+							
+							MyAttributes[0] -> SetHealth(PropAttributes[0]->InheritableHealth);
+
+						}
+
+					}
+
+				}
+
+			}
 
 		}
 	
@@ -79,3 +105,36 @@ void APropPC::BecomeProp() {
 
 }
 
+float APropPC::GetHealthAsPercent() {
+
+	TArray <UPropPlayerAttributes *> MyAttributes;
+	GetPawn()->GetComponents(MyAttributes);
+
+	if (MyAttributes.Num() > 0) {
+	
+		if (MyAttributes[0]) { return MyAttributes[0]->GetHealthAsPercent(); }
+	
+		return 1.0;
+
+	}
+
+	return 1.0;
+
+}
+
+int32 APropPC::GetHealthPoints() {
+
+	TArray <UPropPlayerAttributes *> MyAttributes;
+	GetPawn()->GetComponents(MyAttributes);
+
+	if (MyAttributes.Num() > 0) {
+
+		if (MyAttributes[0]) { return MyAttributes[0]->GetHP(); }
+
+		return 100;
+
+	}
+
+	return 100;
+
+}

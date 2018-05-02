@@ -6,6 +6,7 @@
 #include "PropPC.generated.h"
 
 class AProp;
+class UPropPlayerAttributes;
 
 /**
  * 
@@ -23,5 +24,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Prop Swapping")
 	void BecomeProp();
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Health Info")
+	float GetHealthAsPercent();
+
+	UFUNCTION(BlueprintCallable, Category = "Health Info")
+	int32 GetHealthPoints();
+
 };

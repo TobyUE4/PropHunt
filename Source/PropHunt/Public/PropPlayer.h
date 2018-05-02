@@ -10,6 +10,8 @@ class PROPHUNT_API APropPlayer : public APawn
 {
 	GENERATED_BODY()
 
+private:
+
 public:
 	// Sets default values for this pawn's properties
 	APropPlayer();
@@ -22,7 +24,5 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
-
-	
-	
+		
 };

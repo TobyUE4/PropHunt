@@ -5,6 +5,8 @@
 #include "GameFramework/Actor.h"
 #include "Prop.generated.h"
 
+class UPropAttributesComponent;
+
 UCLASS()
 class PROPHUNT_API AProp : public AActor
 {
@@ -22,5 +24,5 @@ public:
 	
 	UPROPERTY(EditAnywhere, Category = "Prop's Traits")
 	int32 PropHealth = 100;
-
+	
 };
