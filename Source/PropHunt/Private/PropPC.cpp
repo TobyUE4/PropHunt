@@ -67,7 +67,7 @@ void APropPC::BecomeProp() {
 		EndLocation,
 		FColor(255, 0, 0),
 		true,
-		60.f,
+		8.f,
 		0,
 		1.f
 
