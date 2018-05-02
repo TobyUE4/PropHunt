@@ -21,7 +21,7 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-	UPROPERTY(EditAnywhere, Category = "Prop Attributes", meta = (ClampMin = "0", ClampMax = "200", UIMin = "0", UIMax = "200"))
+	UPROPERTY(EditAnywhere, Category = "Prop Attributes", meta = (UIMin = "0", UIMax = "200"))
 	int32 InheritableHealth = 100;
 	
 };

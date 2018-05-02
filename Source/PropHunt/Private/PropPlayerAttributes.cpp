@@ -35,7 +35,13 @@ void UPropPlayerAttributes::TickComponent( float DeltaTime, ELevelTick TickType,
 }
 
 
-void UPropPlayerAttributes::SetHealth(int32 HealthToSet) { CurrentHealth = HealthToSet;  }
+void UPropPlayerAttributes::SetHealth(int32 HealthToSet) { 
+	
+	CurrentHealth = HealthToSet;  
+
+	UE_LOG(LogTemp, Warning, TEXT("Health inherited: %i"), HealthToSet);
+
+}
 
 float UPropPlayerAttributes::GetHealthAsPercent() { 
 
@@ -45,7 +51,7 @@ float UPropPlayerAttributes::GetHealthAsPercent() {
 		
 		UE_LOG(LogTemp, Warning, TEXT("Current Player Health as percent1: %f"), (CurrentHealth / ExpectedMaxHealth));
 
-		return CurrentHealth / ExpectedMaxHealth;
+		return CurrentHealth / float(ExpectedMaxHealth);
 
 	}
 
@@ -53,15 +59,13 @@ float UPropPlayerAttributes::GetHealthAsPercent() {
 	
 		CurrentHealth = ExpectedMaxHealth;
 		UE_LOG(LogTemp, Warning, TEXT("Current Player Health as percent2: %f"), (CurrentHealth / ExpectedMaxHealth));
-
-		return CurrentHealth / ExpectedMaxHealth;
+		return CurrentHealth / float(ExpectedMaxHealth);
 
 	}
 
 	else {
 
 		UE_LOG(LogTemp, Warning, TEXT("Current Player Health as percent3: %f"), (CurrentHealth / float(TypicalMaxHealth)));
-
 		return (CurrentHealth / float(TypicalMaxHealth));
 
 	}
