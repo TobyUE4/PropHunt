@@ -22,6 +22,23 @@ void APropPC::BecomeProp() {
 	FVector StartLocation = PlayerCameraManager->GetCameraLocation();
 	FVector EndLocation = StartLocation + (WorldDirection * 100000);
 
+	FHitResult HitResult;
+
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_GameTraceChannel1)) {
+	
+		if (HitResult.GetActor()) {
+		
+			UE_LOG(LogTemp, Warning, TEXT("An actor has been found! %s"), *HitResult.ToString());
+			AProp * FoundProp = Cast<AProp>(HitResult.GetActor());
+		
+			if (FoundProp) { UE_LOG(LogTemp, Warning, TEXT("A prop has been found!")); }
+
+			else { UE_LOG(LogTemp, Warning, TEXT("A prop was not found!"));  }
+
+		}
+	
+	}
+
 	DrawDebugLine(
 
 		GetWorld(),
