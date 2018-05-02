@@ -12,7 +12,7 @@ void APropPC::BecomeProp() {
 	int32 ViewportX, ViewPortY;
 	GetViewportSize(ViewportX, ViewPortY);
 
-	FVector2D ScreenLocation = FVector2D((ViewportX * .5), ((ViewPortY * .58) - 20));
+	FVector2D ScreenLocation = FVector2D((ViewportX * .50), (ViewPortY * .50));
 
 	FVector WorldDirection;
 	FVector WorldLocation;
@@ -59,19 +59,23 @@ void APropPC::BecomeProp() {
 		}
 	
 	}
-	/*
-	DrawDebugLine(
+	
+	if (UseDebugLines) {
+		
+		DrawDebugLine(
 
-		GetWorld(),
-		StartLocation,
-		EndLocation,
-		FColor(255, 0, 0),
-		true,
-		8.f,
-		0,
-		1.f
+			GetWorld(),
+			StartLocation,
+			EndLocation,
+			FColor(255, 0, 0),
+			true,
+			8.f,
+			0,
+			1.f
 
-	);
-	*/
+			);
+
+	}
+
 }
 

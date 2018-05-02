@@ -14,7 +14,10 @@ UCLASS()
 class PROPHUNT_API APropPC : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+private:
+
+	bool UseDebugLines = false;
 	
 public:
 
