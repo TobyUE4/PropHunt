@@ -26,14 +26,35 @@ void APropPC::BecomeProp() {
 
 	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_GameTraceChannel1)) {
 	
-		if (HitResult.GetActor()) {
-		
-			UE_LOG(LogTemp, Warning, TEXT("An actor has been found! %s"), *HitResult.ToString());
-			AProp * FoundProp = Cast<AProp>(HitResult.GetActor());
-		
-			if (FoundProp) { UE_LOG(LogTemp, Warning, TEXT("A prop has been found!")); }
+		AActor * FoundProp = HitResult.GetActor();
 
-			else { UE_LOG(LogTemp, Warning, TEXT("A prop was not found!"));  }
+		if (FoundProp) {
+		
+			TArray<UStaticMeshComponent *> PropStaticMeshComponents;
+			TArray<UStaticMeshComponent *> MyStaticMeshComponents;
+			FoundProp->GetComponents(PropStaticMeshComponents);
+
+			if (PropStaticMeshComponents[0]) {
+			
+				UStaticMesh * MeshToInherit = PropStaticMeshComponents[0]->StaticMesh;	
+
+				GetPawn()->GetComponents(MyStaticMeshComponents);
+
+				if (MyStaticMeshComponents[0]) {
+				
+					if(MeshToInherit){ 
+					
+						MyStaticMeshComponents[0]->SetStaticMesh(MeshToInherit);
+					
+					}
+
+				}
+
+				else { UE_LOG(LogTemp, Warning, TEXT("Your pawn is missing a static mesh component!")); }
+
+			}
+
+			else { UE_LOG(LogTemp, Warning, TEXT("A prop is missing a static mesh component!")); }
 
 		}
 	
